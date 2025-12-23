@@ -30,6 +30,7 @@
             --success: #10b981;
             --danger: #ef4444;
             --warning: #f59e0b;
+            --accent-blue: #4e8df7;
             
             /* Animation Speeds */
             --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -56,6 +57,7 @@
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
+            transition: opacity 0.5s ease;
         }
 
         /* ===== ANIMATED BACKGROUND ===== */
@@ -389,141 +391,110 @@
             backdrop-filter: blur(10px);
         }
 
+        /* Ultra Pro Verification Overlay */
+        .verification-gate-overlay {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(10, 10, 10, 0.6);
+            backdrop-filter: blur(20px);
+            padding: 20px;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity .35s ease, visibility .35s ease;
+        }
+        .verification-gate-overlay.show-gate {
+            opacity: 1;
+            visibility: visible;
+        }
 
+        /* Popup Box */
+        .verification-box {
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.15);
+            backdrop-filter: blur(25px);
+            max-width: 480px;
+            width: 100%;
+            padding: 40px;
+            border-radius: 25px;
+            text-align: center;
+            transform: translateY(25px) scale(0.9);
+            opacity: 0;
+            transition: 0.45s cubic-bezier(.19,1,.22,1);
+        }
+        .verification-gate-overlay.show-gate .verification-box {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+        }
 
+        /* Icon */
+        .verification-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: var(--accent-blue);
+            text-shadow: 0 0 20px var(--accent-blue);
+        }
 
+        /* Titles */
+        .verification-title {
+            color: white;
+            font-size: 2.1rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        .verification-text {
+            color: #d1d5db;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 35px;
+        }
 
+        /* Main Verify Button */
+        .pro-button {
+            background: linear-gradient(135deg, #4e8df7, #8f68ff);
+            color: white;
+            padding: 16px 40px;
+            border-radius: 50px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.15rem;
+            box-shadow: 0 10px 30px rgba(118, 75, 162, 0.5);
+            transition: 0.35s ease;
+            animation: pulse 2s infinite;
+        }
+        .pro-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 18px 40px rgba(118, 75, 162, 0.7);
+        }
 
-/* Ultra Pro Verification Overlay */
-.verification-gate-overlay {
-  position: fixed;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(10, 10, 10, 0.6);
-  backdrop-filter: blur(20px);
-  padding: 20px;
-  z-index: 9999;
-
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity .35s ease, visibility .35s ease;
-}
-.verification-gate-overlay.show-gate {
-  opacity: 1;
-  visibility: visible;
-}
-
-/* Popup Box */
-.verification-box {
-  background: rgba(255,255,255,0.07);
-  border: 1px solid rgba(255,255,255,0.15);
-  backdrop-filter: blur(25px);
-
-  max-width: 480px;
-  width: 100%;
-  padding: 40px;
-  border-radius: 25px;
-
-  text-align: center;
-  transform: translateY(25px) scale(0.9);
-  opacity: 0;
-
-  transition: 0.45s cubic-bezier(.19,1,.22,1);
-}
-.verification-gate-overlay.show-gate .verification-box {
-  transform: translateY(0) scale(1);
-  opacity: 1;
-}
-
-/* Icon */
-.verification-icon {
-  font-size: 4rem;
-  margin-bottom: 20px;
-  color: var(--accent-blue);
-  text-shadow: 0 0 20px var(--accent-blue);
-}
-
-/* Titles */
-.verification-title {
-  color: white;
-  font-size: 2.1rem;
-  font-weight: 700;
-  margin-bottom: 15px;
-}
-.verification-text {
-  color: #d1d5db;
-  font-size: 1rem;
-  line-height: 1.6;
-  margin-bottom: 35px;
-}
-
-/* Main Verify Button */
-.pro-button {
-  background: linear-gradient(135deg, #4e8df7, #8f68ff);
-  color: white;
-  padding: 16px 40px;
-  border-radius: 50px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 1.15rem;
-  box-shadow: 0 10px 30px rgba(118, 75, 162, 0.5);
-  transition: 0.35s ease;
-  animation: pulse 2s infinite;
-}
-.pro-button:hover {
-  transform: translateY(-5px) scale(1.05);
-  box-shadow: 0 18px 40px rgba(118, 75, 162, 0.7);
-}
-@keyframes pulse {
-  0% { box-shadow: 0 10px 25px rgba(118, 75, 162, 0.45); }
-  50% { box-shadow: 0 15px 45px rgba(118, 75, 162, 0.75); }
-  100% { box-shadow: 0 10px 25px rgba(118, 75, 162, 0.45); }
-}
-
-/* How To Button */
-.how-to-button-pro {
-  display: inline-block;
-  margin-top: 25px;
-  padding: 12px 25px;
-  background: rgba(255,255,255,0.06);
-  border-radius: 50px;
-  border: 1px solid rgba(255,255,255,0.12);
-  color: #c9ccd6;
-  text-decoration: none;
-  font-size: 0.95rem;
-  font-weight: 600;
-  backdrop-filter: blur(10px);
-  transition: 0.3s ease;
-}
-.how-to-button-pro:hover {
-  background: rgba(255,255,255,0.12);
-  border-color: rgba(255,255,255,0.25);
-  color: white;
-  transform: translateY(-3px);
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        /* How To Button */
+        .how-to-button-pro {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 25px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 50px;
+            border: 1px solid rgba(255,255,255,0.12);
+            color: #c9ccd6;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            transition: 0.3s ease;
+        }
+        .how-to-button-pro:hover {
+            background: rgba(255,255,255,0.12);
+            border-color: rgba(255,255,255,0.25);
+            color: white;
+            transform: translateY(-3px);
+        }
 
         .course-content {
             padding: 1.5rem;
@@ -922,6 +893,63 @@
                 width: calc(100% - 2rem);
                 right: 1rem;
             }
+            
+            .verification-box {
+                padding: 30px 20px;
+                margin: 0 15px;
+            }
+            
+            .verification-title {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .stats-bar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .filter-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.75rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .pro-button {
+                padding: 14px 30px;
+                font-size: 1rem;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            .navbar,
+            .quick-actions,
+            .theme-toggle,
+            .progress-tracker,
+            .verification-gate-overlay,
+            .chatbot,
+            .download-progress {
+                display: none !important;
+            }
+            
+            body {
+                background: white !important;
+                color: black !important;
+            }
+            
+            .course-card {
+                break-inside: avoid;
+                border: 1px solid #ccc !important;
+            }
         }
 
         /* ===== SMOOTH TRANSITIONS ===== */
@@ -931,13 +959,59 @@
                         border-color var(--transition-medium),
                         transform var(--transition-medium);
         }
+
+        /* Toast Notifications */
+        .verification-toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            z-index: 10000;
+            animation: slideIn 0.3s ease-out;
+            max-width: 400px;
+        }
+
+        .verification-toast .toast-content {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* Loader */
+        .loader-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--dark-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 99999;
+        }
+
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(255,255,255,0.1);
+            border-radius: 50%;
+            border-top-color: var(--accent);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body>
 
-
-
-
+<!-- Verification Gate Overlay -->
 <div id="verificationGate" class="verification-gate-overlay">
     <div class="verification-box">
         <div class="verification-icon">
@@ -949,7 +1023,7 @@
         </p>
 
         <!-- VERIFY BUTTON -->
-        <a id="verifyBtn" href="https://arolinks.com/3uoz" class="pro-button">
+        <a id="verifyBtn" href="https://arolinks.com/3uoz" class="pro-button" target="_blank">
             Verify to Continue <i class="fas fa-arrow-right"></i>
         </a>
 
@@ -961,535 +1035,675 @@
     </div>
 </div>
 
-<!-- YOUR MAIN PAGE CONTENT -->
-<div id="mainContent">
-    <!-- तुम पूरा main content यहां रखो -->
-</div>
-
-
-
-
-
-
-
-
-
-
+<!-- Main Content Container -->
+<div id="mainContent" class="smooth-scroll-container">
     <!-- Animated Background -->
     <div class="animated-bg"></div>
     
-    <!-- Smooth Scroll Container -->
-    <div class="smooth-scroll-container" id="smoothContainer">
+    <!-- Enhanced Navbar -->
+    <nav class="navbar" id="navbar">
+        <a href="#" class="logo">
+            <div class="logo-icon">UC</div>
+            <span class="logo-text">VIPSTUDY</span>
+        </a>
         
-        <!-- Enhanced Navbar -->
-        <nav class="navbar" id="navbar">
-            <a href="#" class="logo">
-                <div class="logo-icon">UC</div>
-                <span class="logo-text">VIPSTUDY</span>
-            </a>
+        <div class="nav-right">
+            <div class="live-badge">
+                <div class="pulse"></div>
+                LIVE: MADXRAJ
+            </div>
             
-            <div class="nav-right">
-                <div class="live-badge">
-                    <div class="pulse"></div>
-                    LIVE: MADXRAJ
-                </div>
-                
-                <div class="notification-bell">
-                    <div class="profile-btn" id="notificationBtn">
-                        <i class="fas fa-bell"></i>
-                        <span class="notification-count">3</span>
-                    </div>
-                </div>
-                
-                <div class="profile-btn" id="profileBtn">
-                    <i class="fas fa-user"></i>
+            <div class="notification-bell">
+                <div class="profile-btn" id="notificationBtn">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-count">3</span>
                 </div>
             </div>
-        </nav>
+            
+            <div class="profile-btn" id="profileBtn">
+                <i class="fas fa-user"></i>
+            </div>
+        </div>
+    </nav>
 
-        <!-- Hero Section -->
-        <section class="hero" id="section1">
-            <h1 class="hero-title">UCLIVE LEARNING RANI MAM</h1>
-            <p class="hero-subtitle">
-                Access premium courses, track your progress, and join thousands of successful students. 
-                Your path to excellence starts here.
+    <!-- Hero Section -->
+    <section class="hero" id="section1">
+        <h1 class="hero-title">UCLIVE LEARNING RANI MAM</h1>
+        <p class="hero-subtitle">
+            Access premium courses, track your progress, and join thousands of successful students. 
+            Your path to excellence starts here.
+        </p>
+        
+        <!-- Search Feature -->
+        <div class="search-container">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" class="search-input" id="searchInput" placeholder="Search courses, topics, or instructors...">
+        </div>
+        
+        <!-- Stats -->
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-number">10+</div>
+                <div class="stat-label">Courses</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">1K+</div>
+                <div class="stat-label">Students</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">98%</div>
+                <div class="stat-label">Success Rate</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">Support</div>
+            </div>
+        </div>
+        
+        <!-- Filters -->
+        <div class="filters">
+            <button class="filter-btn active" data-filter="all">
+                <i class="fas fa-layer-group"></i> All Courses
+            </button>
+            <button class="filter-btn" data-filter="live">
+                <i class="fas fa-broadcast-tower"></i> Live Batches
+            </button>
+            <button class="filter-btn" data-filter="recorded">
+                <i class="fas fa-video"></i> Recorded
+            </button>
+            <button class="filter-btn" data-filter="free">
+                <i class="fas fa-gift"></i> Free Resources
+            </button>
+            <button class="filter-btn" data-filter="popular">
+                <i class="fas fa-fire"></i> Most Popular
+            </button>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section class="courses-container" id="section2">
+        <div class="course-grid" id="courseGrid">
+            <!-- Course 1 -->
+            <div class="course-card" data-category="recorded">
+                <div class="course-image">
+                    <img src="https://appx-content-v2.classx.co.in/paid_course4/2025-05-13-0.6208724425359201.png" alt="English Course">
+                    <div class="course-badge">
+                        <i class="fas fa-star"></i> Premium
+                    </div>
+                </div>
+                <div class="course-content">
+                    <h3 class="course-title">English Pre + Mains Complete Course</h3>
+                    <p class="course-description">
+                        Master English for competitive exams with comprehensive recorded sessions from expert faculty.
+                    </p>
+                    <div class="course-meta">
+                        <div class="course-price">FREE</div>
+                        <button class="enroll-btn" data-course="english">Enroll Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course 2 -->
+            <div class="course-card" data-category="live">
+                <div class="course-image">
+                    <img src="https://tse2.mm.bing.net/th/id/OIP.s2zRRsN1T-HSDZfR9UXUcAHaEK?pid=Api&P=0&h=180" alt="Achievers Batch">
+                    <div class="course-badge">
+                        <i class="fas fa-bolt"></i> Live
+                    </div>
+                </div>
+                <div class="course-content">
+                    <h3 class="course-title">Achievers Batch 5.0</h3>
+                    <p class="course-description">
+                        Intensive preparation batch for top rankers with daily practice and mentorship.
+                    </p>
+                    <div class="course-meta">
+                        <div class="course-price">FREE</div>
+                        <button class="enroll-btn" data-course="achievers5">Join Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course 3 -->
+            <div class="course-card" data-category="recorded">
+                <div class="course-image">
+                    <img src="https://appxcontent.kaxa.in/paid_course3/2024-05-28-0.8416063310399009.png" alt="Achievers 3.0">
+                    <div class="course-badge">
+                        <i class="fas fa-medal"></i> Complete
+                    </div>
+                </div>
+                <div class="course-content">
+                    <h3 class="course-title">Achievers Batch 3.0 (Complete)</h3>
+                    <p class="course-description">
+                        Full recorded batch with comprehensive syllabus coverage and practice material.
+                    </p>
+                    <div class="course-meta">
+                        <div class="course-price">FREE</div>
+                        <button class="enroll-btn" data-course="achievers3">Access Course</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course 4 -->
+            <div class="course-card" data-category="recorded">
+                <div class="course-image">
+                    <img src="https://appxcontent.kaxa.in/paid_course4/2024-02-09-0.09483498329248174.png" alt="Crash Course">
+                    <div class="course-badge">
+                        <i class="fas fa-clock"></i> Fast Track
+                    </div>
+                </div>
+                <div class="course-content">
+                    <h3 class="course-title">Crash Course Complete</h3>
+                    <p class="course-description">
+                        Quick revision course covering all essential topics with shortcut methods.
+                    </p>
+                    <div class="course-meta">
+                        <div class="course-price">FREE</div>
+                        <button class="enroll-btn" data-course="crash">Start Learning</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course 5 -->
+            <div class="course-card" data-category="recorded">
+                <div class="course-image">
+                    <img src="https://tse3.mm.bing.net/th/id/OIP.uaPJoACcx3dL2qrTkAAAWAAAAA?pid=Api&P=0&h=180" alt="madxraj">
+                    <div class="course-badge">
+                        <i class="fas fa-clock"></i> Fast Track
+                    </div>
+                </div>
+                <div class="course-content">
+                    <h3 class="course-title">New Crash Course</h3>
+                    <p class="course-description">
+                        Quick revision course covering all essential topics with shortcut methods.
+                    </p>
+                    <div class="course-meta">
+                        <div class="course-price">FREE</div>
+                        <button class="enroll-btn" data-course="crash2">Start Learning</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course 6 -->
+            <div class="course-card" data-category="live">
+                <div class="course-image">
+                    <img src="https://tse2.mm.bing.net/th/id/OIP.s2zRRsN1T-HSDZfR9UXUcAHaEK?pid=Api&P=0&h=180" alt="Achievers Batch">
+                    <div class="course-badge">
+                        <i class="fas fa-bolt"></i> Live
+                    </div>
+                </div>
+                <div class="course-content">
+                    <h3 class="course-title">Achievers Batch 5.0</h3>
+                    <p class="course-description">
+                        Intensive preparation batch for top rankers with daily practice and mentorship.
+                    </p>
+                    <div class="course-meta">
+                        <div class="course-price">FREE</div>
+                        <button class="enroll-btn" data-course="achievers5">Join Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course 7 -->
+            <div class="course-card" data-category="recorded">
+                <div class="course-image">
+                    <img src="https://appxcontent.kaxa.in/paid_course3/2024-05-28-0.8416063310399009.png" alt="Achievers 3.0">
+                    <div class="course-badge">
+                        <i class="fas fa-medal"></i> Complete
+                    </div>
+                </div>
+                <div class="course-content">
+                    <h3 class="course-title">Achievers Batch 3.0 (Complete)</h3>
+                    <p class="course-description">
+                        Full recorded batch with comprehensive syllabus coverage and practice material.
+                    </p>
+                    <div class="course-meta">
+                        <div class="course-price">FREE</div>
+                        <button class="enroll-btn" data-course="achievers3">Access Course</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course 8 -->
+            <div class="course-card" data-category="recorded">
+                <div class="course-image">
+                    <img src="https://appxcontent.kaxa.in/paid_course4/2024-02-09-0.09483498329248174.png" alt="Crash Course">
+                    <div class="course-badge">
+                        <i class="fas fa-clock"></i> Fast Track
+                    </div>
+                </div>
+                <div class="course-content">
+                    <h3 class="course-title">Crash Course Complete</h3>
+                    <p class="course-description">
+                        Quick revision course covering all essential topics with shortcut methods.
+                    </p>
+                    <div class="course-meta">
+                        <div class="course-price">FREE</div>
+                        <button class="enroll-btn" data-course="crash">Start Learning</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course 9 -->
+            <div class="course-card" data-category="recorded">
+                <div class="course-image">
+                    <img src="https://tse3.mm.bing.net/th/id/OIP.uaPJoACcx3dL2qrTkAAAWAAAAA?pid=Api&P=0&h=180" alt="madxraj">
+                    <div class="course-badge">
+                        <i class="fas fa-clock"></i> Fast Track
+                    </div>
+                </div>
+                <div class="course-content">
+                    <h3 class="course-title">New Crash Course</h3>
+                    <p class="course-description">
+                        Quick revision course covering all essential topics with shortcut methods.
+                    </p>
+                    <div class="course-meta">
+                        <div class="course-price">FREE</div>
+                        <button class="enroll-btn" data-course="crash2">Start Learning</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course 10 -->
+            <div class="course-card" data-category="recorded">
+                <div class="course-image">
+                    <img src="https://appx-content-v2.classx.co.in/paid_course4/2025-05-16-0.9535980154518913.png" alt="Crash Course">
+                    <div class="course-badge">
+                        <i class="fas fa-clock"></i> Fast Track
+                    </div>
+                </div>
+                <div class="course-content">
+                    <h3 class="course-title">Practice Batch For SSC 2025</h3>
+                    <p class="course-description">
+                        Quick revision course covering all essential topics with shortcut methods.
+                    </p>
+                    <div class="course-meta">
+                        <div class="course-price">FREE</div>
+                        <button class="enroll-btn" data-course="ssc2025">Start Learning</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course 11 -->
+            <div class="course-card" data-category="recorded">
+                <div class="course-image">
+                    <img src="https://appx-content-v2.classx.co.in/paid_course4/2025-05-16-0.9535980154518913.png" alt="Crash Course">
+                    <div class="course-badge">
+                        <i class="fas fa-clock"></i> Fast Track
+                    </div>
+                </div>
+                <div class="course-content">
+                    <h3 class="course-title">Rani mam Practice Batch 2025</h3>
+                    <p class="course-description">
+                        Quick revision course covering all essential topics with shortcut methods.
+                    </p>
+                    <div class="course-meta">
+                        <div class="course-price">FREE</div>
+                        <button class="enroll-btn" data-course="1">Start Learning</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course 12 -->
+            <div class="course-card" data-category="recorded">
+                <div class="course-image">
+                    <img src="https://tse1.mm.bing.net/th/id/OIP.MadCLZfp-0OisIYy6X1aYwHaHa?pid=Api&P=0&h=180" alt="Crash Course">
+                    <div class="course-badge">
+                        <i class="fas fa-clock"></i> Fast Track
+                    </div>
+                </div>
+                <div class="course-content">
+                    <h3 class="course-title">Samundramanthan Of Vocabulary</h3>
+                    <p class="course-description">
+                        Quick revision course covering all essential topics with shortcut methods.
+                    </p>
+                    <div class="course-meta">
+                        <div class="course-price">FREE</div>
+                        <button class="enroll-btn" data-course="2">Start Learning</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Section -->
+    <section class="featured-section" id="section3">
+        <h2 class="section-title">Why Choose VIP STUDY?</h2>
+        <div class="featured-grid">
+            <div class="featured-card">
+                <div class="featured-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h3>Expert Faculty</h3>
+                <p>Learn from experienced educators with proven track records</p>
+            </div>
+            <div class="featured-card">
+                <div class="featured-icon">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+                <h3>Interactive Learning</h3>
+                <p>Engage with live classes, quizzes, and discussions</p>
+            </div>
+            <div class="featured-card">
+                <div class="featured-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3>Progress Tracking</h3>
+                <p>Monitor your improvement with detailed analytics</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Whitespace Animation -->
+    <div class="whitespace">
+        <div class="floating-shapes" id="floatingShapes"></div>
+    </div>
+
+    <!-- Footer -->
+    <footer style="text-align: center; padding: 3rem; color: var(--text-muted);">
+        <p style="font-size: 1rem; margin-bottom: 1rem;">𝑳𝑨𝑳𝑰𝑻 △ © 2025 - All Rights Reserved</p>
+        <div style="display: flex; justify-content: center; gap: 2rem; margin-top: 2rem; flex-wrap: wrap;">
+            <a href="#" style="color: var(--text-muted); text-decoration: none;">Privacy Policy</a>
+            <a href="#" style="color: var(--text-muted); text-decoration: none;">Terms of Service</a>
+            <a href="#" style="color: var(--text-muted); text-decoration: none;">Contact</a>
+            <a href="#" style="color: var(--text-muted); text-decoration: none;">Support</a>
+        </div>
+        <p style="margin-top: 2rem; font-size: 0.875rem; opacity: 0.7;">
+            Disclaimer: This platform is for educational purposes only. We don't host any copyrighted content.
+        </p>
+    </footer>
+</div>
+
+<!-- ===== NEW FEATURES UI ===== -->
+
+<!-- Progress Tracker -->
+<div class="progress-tracker">
+    <div class="progress-dot active" data-title="Hero" data-section="section1"></div>
+    <div class="progress-dot" data-title="Courses" data-section="section2"></div>
+    <div class="progress-dot" data-title="Features" data-section="section3"></div>
+</div>
+
+<!-- Quick Actions -->
+<div class="quick-actions">
+    <div class="quick-btn" id="chatbotBtn">
+        <i class="fas fa-robot"></i>
+    </div>
+    <div class="quick-btn" id="downloadBtn">
+        <i class="fas fa-download"></i>
+    </div>
+    <div class="quick-btn" id="shareBtn">
+        <i class="fas fa-share-alt"></i>
+    </div>
+</div>
+
+<!-- Theme Toggle -->
+<div class="theme-toggle" id="themeToggle">
+    <i class="fas fa-moon"></i>
+</div>
+
+<!-- Enhanced Modal -->
+<div class="enhanced-modal" id="enhancedModal">
+    <div class="modal-content">
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <div style="width: 80px; height: 80px; background: var(--primary-gradient); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 2rem;">
+                <i class="fab fa-whatsapp"></i>
+            </div>
+            <h2 style="font-size: 2rem; margin-bottom: 1rem;">Join Our Community</h2>
+            <p style="color: var(--text-secondary); line-height: 1.6;">
+                Get daily updates, study materials, and connect with peers on WhatsApp.
             </p>
-            
-            <!-- Search Feature -->
-            <div class="search-container">
-                <i class="fas fa-search search-icon"></i>
-                <input type="text" class="search-input" id="searchInput" placeholder="Search courses, topics, or instructors...">
-            </div>
-            
-            <!-- Stats -->
-            <div class="stats-bar">
-                <div class="stat-item">
-                    <div class="stat-number">?+</div>
-                    <div class="stat-label">Courses</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">1K+</div>
-                    <div class="stat-label">Students</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">98%</div>
-                    <div class="stat-label">Success Rate</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">24/7</div>
-                    <div class="stat-label">Support</div>
-                </div>
-            </div>
-            
-            <!-- Filters -->
-            <div class="filters">
-                <button class="filter-btn active" data-filter="all">
-                    <i class="fas fa-layer-group"></i> All Courses
-                </button>
-                <button class="filter-btn" data-filter="live">
-                    <i class="fas fa-broadcast-tower"></i> Live Batches
-                </button>
-                <button class="filter-btn" data-filter="recorded">
-                    <i class="fas fa-video"></i> Recorded
-                </button>
-                <button class="filter-btn" data-filter="free">
-                    <i class="fas fa-gift"></i> Free Resources
-                </button>
-                <button class="filter-btn" data-filter="popular">
-                    <i class="fas fa-fire"></i> Most Popular
-                </button>
-            </div>
-        </section>
-
-        <!-- Courses Section -->
-        <section class="courses-container" id="section2">
-            <div class="course-grid" id="courseGrid">
-                <!-- Course 1 -->
-                <div class="course-card" data-category="recorded">
-                    <div class="course-image">
-                        <img src="https://appx-content-v2.classx.co.in/paid_course4/2025-05-13-0.6208724425359201.png" alt="English Course">
-                        <div class="course-badge">
-                            <i class="fas fa-star"></i> Premium
-                        </div>
-                    </div>
-                    <div class="course-content">
-                        <h3 class="course-title">English Pre + Mains Complete Course</h3>
-                        <p class="course-description">
-                            Master English for competitive exams with comprehensive recorded sessions from expert faculty.
-                        </p>
-                        <div class="course-meta">
-                            <div class="course-price">FREE</div>
-                            <button class="enroll-btn" data-course="english">Enroll Now</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Course 2 -->
-                <div class="course-card" data-category="live">
-                    <div class="course-image">
-                        <img src="https://tse2.mm.bing.net/th/id/OIP.s2zRRsN1T-HSDZfR9UXUcAHaEK?pid=Api&P=0&h=180" alt="Achievers Batch">
-                        <div class="course-badge">
-                            <i class="fas fa-bolt"></i> Live
-                        </div>
-                    </div>
-                    <div class="course-content">
-                        <h3 class="course-title">Achievers Batch 5.0</h3>
-                        <p class="course-description">
-                            Intensive preparation batch for top rankers with daily practice and mentorship.
-                        </p>
-                        <div class="course-meta">
-                            <div class="course-price">FREE</div>
-                            <button class="enroll-btn" data-course="achievers5">Join Now</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Course 3 -->
-                <div class="course-card" data-category="recorded">
-                    <div class="course-image">
-                        <img src="https://appxcontent.kaxa.in/paid_course3/2024-05-28-0.8416063310399009.png" alt="Achievers 3.0">
-                        <div class="course-badge">
-                            <i class="fas fa-medal"></i> Complete
-                        </div>
-                    </div>
-                    <div class="course-content">
-                        <h3 class="course-title">Achievers Batch 3.0 (Complete)</h3>
-                        <p class="course-description">
-                            Full recorded batch with comprehensive syllabus coverage and practice material.
-                        </p>
-                        <div class="course-meta">
-                            <div class="course-price">FREE</div>
-                            <button class="enroll-btn" data-course="achievers3">Access Course</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Course 4 -->
-                <div class="course-card" data-category="recorded">
-                    <div class="course-image">
-                        <img src="https://appxcontent.kaxa.in/paid_course4/2024-02-09-0.09483498329248174.png" alt="Crash Course">
-                        <div class="course-badge">
-                            <i class="fas fa-clock"></i> Fast Track
-                        </div>
-                    </div>
-                    <div class="course-content">
-                        <h3 class="course-title">Crash Course Complete</h3>
-                        <p class="course-description">
-                            Quick revision course covering all essential topics with shortcut methods.
-                        </p>
-                        <div class="course-meta">
-                            <div class="course-price">FREE</div>
-                            <button class="enroll-btn" data-course="crash">Start Learning</button>
-                        </div>
-                    </div>
-                </div>
-               <!-- Course 4 -->
-                <div class="course-card" data-category="recorded">
-                    <div class="course-image">
-                        <img src="https://tse3.mm.bing.net/th/id/OIP.uaPJoACcx3dL2qrTkAAAWAAAAA?pid=Api&P=0&h=180" alt="madxraj">
-                        <div class="course-badge">
-                            <i class="fas fa-clock"></i> Fast Track
-                        </div>
-                    </div>
-                    <div class="course-content">
-                        <h3 class="course-title">new Crash Course </h3>
-                        <p class="course-description">
-                            Quick revision course covering all essential topics with shortcut methods.
-                        </p>
-                        <div class="course-meta">
-                            <div class="course-price">FREE</div>
-                            <button class="enroll-btn" data-course="crash2">Start Learning</button>
-                        </div>
-                    </div>
-                </div>
-
-                 <!-- Course 2 -->
-                <div class="course-card" data-category="live">
-                    <div class="course-image">
-                        <img src="https://tse2.mm.bing.net/th/id/OIP.s2zRRsN1T-HSDZfR9UXUcAHaEK?pid=Api&P=0&h=180" alt="Achievers Batch">
-                        <div class="course-badge">
-                            <i class="fas fa-bolt"></i> Live
-                        </div>
-                    </div>
-                    <div class="course-content">
-                        <h3 class="course-title">Achievers Batch 5.0</h3>
-                        <p class="course-description">
-                            Intensive preparation batch for top rankers with daily practice and mentorship.
-                        </p>
-                        <div class="course-meta">
-                            <div class="course-price">FREE</div>
-                            <button class="enroll-btn" data-course="achievers5">Join Now</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Course 3 -->
-                <div class="course-card" data-category="recorded">
-                    <div class="course-image">
-                        <img src="https://appxcontent.kaxa.in/paid_course3/2024-05-28-0.8416063310399009.png" alt="Achievers 3.0">
-                        <div class="course-badge">
-                            <i class="fas fa-medal"></i> Complete
-                        </div>
-                    </div>
-                    <div class="course-content">
-                        <h3 class="course-title">Achievers Batch 3.0 (Complete)</h3>
-                        <p class="course-description">
-                            Full recorded batch with comprehensive syllabus coverage and practice material.
-                        </p>
-                        <div class="course-meta">
-                            <div class="course-price">FREE</div>
-                            <button class="enroll-btn" data-course="achievers3">Access Course</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Course 4 -->
-                <div class="course-card" data-category="recorded">
-                    <div class="course-image">
-                        <img src="https://appxcontent.kaxa.in/paid_course4/2024-02-09-0.09483498329248174.png" alt="Crash Course">
-                        <div class="course-badge">
-                            <i class="fas fa-clock"></i> Fast Track
-                        </div>
-                    </div>
-                    <div class="course-content">
-                        <h3 class="course-title">Crash Course Complete</h3>
-                        <p class="course-description">
-                            Quick revision course covering all essential topics with shortcut methods.
-                        </p>
-                        <div class="course-meta">
-                            <div class="course-price">FREE</div>
-                            <button class="enroll-btn" data-course="crash">Start Learning</button>
-                        </div>
-                    </div>
-                </div>
-               <!-- Course 4 -->
-                <div class="course-card" data-category="recorded">
-                    <div class="course-image">
-                        <img src="https://tse3.mm.bing.net/th/id/OIP.uaPJoACcx3dL2qrTkAAAWAAAAA?pid=Api&P=0&h=180" alt="madxraj">
-                        <div class="course-badge">
-                            <i class="fas fa-clock"></i> Fast Track
-                        </div>
-                    </div>
-                    <div class="course-content">
-                        <h3 class="course-title">new Crash Course </h3>
-                        <p class="course-description">
-                            Quick revision course covering all essential topics with shortcut methods.
-                        </p>
-                        <div class="course-meta">
-                            <div class="course-price">FREE</div>
-                            <button class="enroll-btn" data-course="crash2">Start Learning</button>
-                        </div>
-                    </div>
-                </div>
-                   <!-- Course 4 -->
-                <div class="course-card" data-category="recorded">
-                    <div class="course-image">
-                        <img src="https://appx-content-v2.classx.co.in/paid_course4/2025-05-16-0.9535980154518913.png" alt="Crash Course">
-                        <div class="course-badge">
-                            <i class="fas fa-clock"></i> Fast Track
-                        </div>
-                    </div>
-                    <div class="course-content">
-                        <h3 class="course-title">Practice Batch For SSC 2025</h3>
-                        <p class="course-description">
-                            Quick revision course covering all essential topics with shortcut methods.
-                        </p>
-                        <div class="course-meta">
-                            <div class="course-price">FREE</div>
-                            <button class="enroll-btn" data-course="ssc2025">Start Learning</button>
-                        </div>
-                    </div>
-                </div>
-                   <!-- Course 4 -->
-                <div class="course-card" data-category="recorded">
-                    <div class="course-image">
-                        <img src="https://appx-content-v2.classx.co.in/paid_course4/2025-05-16-0.9535980154518913.png" alt="Crash Course">
-                        <div class="course-badge">
-                            <i class="fas fa-clock"></i> Fast Track
-                        </div>
-                    </div>
-                    <div class="course-content">
-                        <h3 class="course-title">Rani mam Practice Batch 2025</h3>
-                        <p class="course-description">
-                            Quick revision course covering all essential topics with shortcut methods.
-                        </p>
-                        <div class="course-meta">
-                            <div class="course-price">FREE</div>
-                            <button class="enroll-btn" data-course="1">Start Learning</button>
-                        </div>
-                    </div>
-                </div>
-                   <!-- Course 4 -->
-                <div class="course-card" data-category="recorded">
-                    <div class="course-image">
-                        <img src="https://tse1.mm.bing.net/th/id/OIP.MadCLZfp-0OisIYy6X1aYwHaHa?pid=Api&P=0&h=180" alt="Crash Course">
-                        <div class="course-badge">
-                            <i class="fas fa-clock"></i> Fast Track
-                        </div>
-                    </div>
-                    <div class="course-content">
-                        <h3 class="course-title">Samundramanthan Of Vocabulary</h3>
-                        <p class="course-description">
-                            Quick revision course covering all essential topics with shortcut methods.
-                        </p>
-                        <div class="course-meta">
-                            <div class="course-price">FREE</div>
-                            <button class="enroll-btn" data-course="2">Start Learning</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Featured Section -->
-        <section class="featured-section" id="section3">
-            <h2 class="section-title">Why Choose VIP STUDY?</h2>
-            <div class="featured-grid">
-                <div class="featured-card">
-                    <div class="featured-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <h3>Expert Faculty</h3>
-                    <p>Learn from experienced educators with proven track records</p>
-                </div>
-                <div class="featured-card">
-                    <div class="featured-icon">
-                        <i class="fas fa-laptop-code"></i>
-                    </div>
-                    <h3>Interactive Learning</h3>
-                    <p>Engage with live classes, quizzes, and discussions</p>
-                </div>
-                <div class="featured-card">
-                    <div class="featured-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>Progress Tracking</h3>
-                    <p>Monitor your improvement with detailed analytics</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Whitespace Animation -->
-        <div class="whitespace">
-            <div class="floating-shapes" id="floatingShapes"></div>
         </div>
-
-        <!-- Footer -->
-        <footer style="text-align: center; padding: 3rem; color: var(--text-muted);">
-            <p style="font-size: 1rem; margin-bottom: 1rem;">𝑳𝑨𝑳𝑰𝑻 △ © 2025 - All Rights Reserved</p>
-            <div style="display: flex; justify-content: center; gap: 2rem; margin-top: 2rem;">
-                <a href="#" style="color: var(--text-muted); text-decoration: none;">Privacy Policy</a>
-                <a href="#" style="color: var(--text-muted); text-decoration: none;">Terms of Service</a>
-                <a href="#" style="color: var(--text-muted); text-decoration: none;">Contact</a>
-                <a href="#" style="color: var(--text-muted); text-decoration: none;">Support</a>
-            </div>
-        </footer>
+        
+        <a href="https://whatsapp.com/channel/0029Vb6S11G9xVJmxmdq3k1B" target="_blank" 
+           style="display: block; width: 100%; padding: 1rem; background: var(--success); color: white; text-align: center; border-radius: 12px; text-decoration: none; font-weight: 600; margin-bottom: 1rem; transition: var(--transition-fast);">
+           <i class="fab fa-whatsapp"></i> Join WhatsApp Channel
+        </a>
+        
+        <button id="modalContinueBtn" style="width: 100%; padding: 1rem; background: transparent; border: 1px solid rgba(255, 255, 255, 0.2); color: var(--text-secondary); border-radius: 12px; cursor: pointer; font-weight: 600; transition: var(--transition-fast);">
+            Continue to Course
+        </button>
     </div>
+</div>
 
-    <!-- ===== NEW FEATURES UI ===== -->
-
-    <!-- Progress Tracker -->
-    <div class="progress-tracker">
-        <div class="progress-dot active" data-title="Hero" data-section="section1"></div>
-        <div class="progress-dot" data-title="Courses" data-section="section2"></div>
-        <div class="progress-dot" data-title="Features" data-section="section3"></div>
-    </div>
-
-    <!-- Quick Actions -->
-    <div class="quick-actions">
-        <div class="quick-btn" id="chatbotBtn">
-            <i class="fas fa-robot"></i>
+<!-- AI Chatbot -->
+<div class="chatbot" id="chatbot">
+    <div class="chat-header">
+        <div>
+            <strong>Study Assistant</strong>
+            <div style="font-size: 0.75rem; color: var(--text-muted);">Online</div>
         </div>
-        <div class="quick-btn" id="downloadBtn">
+        <button id="closeChatbot" style="background: none; border: none; color: var(--text-secondary); cursor: pointer;">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+    <div class="chat-body" id="chatBody">
+        <div style="text-align: center; padding: 2rem 0; color: var(--text-muted);">
+            <i class="fas fa-robot" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+            <p>Hello! I'm your study assistant. How can I help you today?</p>
+        </div>
+    </div>
+    <input type="text" class="chat-input" id="chatInput" placeholder="Type your question...">
+</div>
+
+<!-- Download Progress -->
+<div class="download-progress" id="downloadProgress">
+    <div style="display: flex; align-items: center; gap: 1rem; width: 100%;">
+        <div style="width: 30px; height: 30px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center;">
             <i class="fas fa-download"></i>
         </div>
-        <div class="quick-btn" id="shareBtn">
-            <i class="fas fa-share-alt"></i>
+        <div style="flex: 1;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                <span>Downloading Materials</span>
+                <span id="downloadPercent">0%</span>
+            </div>
+            <div style="height: 4px; background: rgba(255, 255, 255, 0.1); border-radius: 2px; overflow: hidden;">
+                <div id="downloadBar" style="height: 100%; background: var(--accent); width: 0%; transition: width 0.3s ease;"></div>
+            </div>
         </div>
     </div>
+</div>
 
-    <!-- Theme Toggle -->
-    <div class="theme-toggle" id="themeToggle">
-        <i class="fas fa-moon"></i>
-    </div>
+<script>
+    // ===== VERIFICATION SYSTEM =====
+    (function() {
+        const verificationGate = document.getElementById("verificationGate");
+        const mainContent = document.getElementById("mainContent");
+        const verifyBtn = document.getElementById("verifyBtn");
 
-    <!-- Enhanced Modal -->
-    <div class="enhanced-modal" id="enhancedModal">
-        <div class="modal-content">
-            <div style="text-align: center; margin-bottom: 2rem;">
-                <div style="width: 80px; height: 80px; background: var(--primary-gradient); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 2rem;">
-                    <i class="fab fa-whatsapp"></i>
-                </div>
-                <h2 style="font-size: 2rem; margin-bottom: 1rem;">Join Our Community</h2>
-                <p style="color: var(--text-secondary); line-height: 1.6;">
-                    Get daily updates, study materials, and connect with peers on WhatsApp.
-                </p>
-            </div>
+        const KEY = "vipstudy_verification_24hr";
+        const VALIDITY = 24 * 60 * 60 * 1000; // 24 hours
+
+        const params = new URLSearchParams(window.location.search);
+
+        // AUTO VERIFY ONLY IF ?true-show
+        if (params.has("true-show")) {
+            localStorage.setItem(KEY, JSON.stringify({
+                timestamp: Date.now(),
+                ip: getClientIP(),
+                userAgent: navigator.userAgent
+            }));
+            window.history.replaceState({}, "", window.location.pathname);
+
+            mainContent.style.display = "block";
+            verificationGate.classList.remove("show-gate");
+            document.body.style.overflow = "auto";
             
-            <a href="https://whatsapp.com/channel/0029Vb6S11G9xVJmxmdq3k1B" target="_blank" 
-               style="display: block; width: 100%; padding: 1rem; background: var(--success); color: white; text-align: center; border-radius: 12px; text-decoration: none; font-weight: 600; margin-bottom: 1rem; transition: var(--transition-fast);">
-               <i class="fab fa-whatsapp"></i> Join WhatsApp Channel
-            </a>
-            
-            <button id="modalContinueBtn" style="width: 100%; padding: 1rem; background: transparent; border: 1px solid rgba(255, 255, 255, 0.2); color: var(--text-secondary); border-radius: 12px; cursor: pointer; font-weight: 600; transition: var(--transition-fast);">
-                Continue to Course
-            </button>
-        </div>
-    </div>
+            showToast("✓ Verification successful! Access granted for 24 hours.", "success");
+            return;
+        }
 
-    <!-- AI Chatbot -->
-    <div class="chatbot" id="chatbot">
-        <div class="chat-header">
-            <div>
-                <strong>Study Assistant</strong>
-                <div style="font-size: 0.75rem; color: var(--text-muted);">Online</div>
-            </div>
-            <button id="closeChatbot" style="background: none; border: none; color: var(--text-secondary); cursor: pointer;">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-        <div class="chat-body" id="chatBody">
-            <div style="text-align: center; padding: 2rem 0; color: var(--text-muted);">
-                <i class="fas fa-robot" style="font-size: 2rem; margin-bottom: 1rem;"></i>
-                <p>Hello! I'm your study assistant. How can I help you today?</p>
-            </div>
-        </div>
-        <input type="text" class="chat-input" id="chatInput" placeholder="Type your question...">
-    </div>
+        // NORMAL CHECK
+        const storedData = localStorage.getItem(KEY);
 
-    <!-- Download Progress -->
-    <div class="download-progress" id="downloadProgress">
-        <div style="display: flex; align-items: center; gap: 1rem; width: 100%;">
-            <div style="width: 30px; height: 30px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center;">
-                <i class="fas fa-download"></i>
-            </div>
-            <div style="flex: 1;">
-                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-                    <span>Downloading Materials</span>
-                    <span id="downloadPercent">0%</span>
-                </div>
-                <div style="height: 4px; background: rgba(255, 255, 255, 0.1); border-radius: 2px; overflow: hidden;">
-                    <div id="downloadBar" style="height: 100%; background: var(--accent); width: 0%; transition: width 0.3s ease;"></div>
-                </div>
-            </div>
-        </div>
-    </div>
+        if (storedData) {
+            try {
+                const { timestamp } = JSON.parse(storedData);
+                const diff = Date.now() - timestamp;
 
-    <script>
-        // ===== SMOOTH SCROLL & NAVIGATION =====
-        const navbar = document.getElementById('navbar');
-        const smoothContainer = document.getElementById('smoothContainer');
-        const progressDots = document.querySelectorAll('.progress-dot');
-        let currentTargetUrl = '';
-        
-        // Navbar scroll effect
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
+                if (diff < VALIDITY) {
+                    // VALID USER
+                    mainContent.style.display = "block";
+                    document.body.style.overflow = "auto";
+                    return;
+                } else {
+                    // EXPIRED
+                    localStorage.removeItem(KEY);
+                }
+            } catch (error) {
+                console.error("Verification data error:", error);
+                localStorage.removeItem(KEY);
             }
-            
-            // Update progress tracker
-            const sections = document.querySelectorAll('section');
-            const scrollPos = window.scrollY + 100;
-            
-            sections.forEach((section, index) => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
+        }
+
+        // NOT VERIFIED → SHOW POPUP
+        mainContent.style.display = "none";
+        verificationGate.classList.add("show-gate");
+        document.body.style.overflow = "hidden";
+
+        // Enhanced verify button handler
+        if (verifyBtn) {
+            verifyBtn.addEventListener("click", function(e) {
+                e.preventDefault();
                 
-                if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-                    progressDots.forEach(dot => dot.classList.remove('active'));
-                    if (progressDots[index]) {
-                        progressDots[index].classList.add('active');
+                // Open verification link
+                const verifyUrl = this.href;
+                window.open(verifyUrl, "_blank");
+                
+                // Simulate verification after 3 seconds
+                setTimeout(() => {
+                    localStorage.setItem(KEY, JSON.stringify({
+                        timestamp: Date.now(),
+                        ip: getClientIP(),
+                        userAgent: navigator.userAgent
+                    }));
+                    
+                    verificationGate.classList.remove("show-gate");
+                    mainContent.style.display = "block";
+                    document.body.style.overflow = "auto";
+                    
+                    // Fade in main content
+                    mainContent.style.opacity = "0";
+                    setTimeout(() => {
+                        mainContent.style.opacity = "1";
+                    }, 100);
+                    
+                    showToast("✓ Verification successful! Access granted for 24 hours.", "success");
+                }, 3000);
+            });
+        }
+
+        function getClientIP() {
+            // Simplified IP detection
+            return "user_" + Math.random().toString(36).substr(2, 9);
+        }
+
+        function showToast(message, type) {
+            const toast = document.createElement("div");
+            toast.className = "verification-toast";
+            toast.style.background = type === "success" ? "#10b981" : "#ef4444";
+            toast.innerHTML = `
+                <div class="toast-content">
+                    <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
+                    <span>${message}</span>
+                </div>
+            `;
+            
+            document.body.appendChild(toast);
+            
+            // Remove after 5 seconds
+            setTimeout(() => {
+                toast.style.animation = "slideIn 0.3s ease-out reverse forwards";
+                setTimeout(() => {
+                    if (toast.parentNode) {
+                        toast.parentNode.removeChild(toast);
                     }
-                }
-            });
-        });
+                }, 300);
+            }, 5000);
+        }
+    })();
 
-        // Progress tracker navigation
-        progressDots.forEach(dot => {
-            dot.addEventListener('click', () => {
-                const sectionId = dot.getAttribute('data-section');
-                const section = document.getElementById(sectionId);
-                if (section) {
-                    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
-
-        // ===== SEARCH FUNCTIONALITY =====
-        const searchInput = document.getElementById('searchInput');
-        const courseCards = document.querySelectorAll('.course-card');
+    // ===== SMOOTH SCROLL & NAVIGATION =====
+    const navbar = document.getElementById('navbar');
+    const smoothContainer = document.getElementById('smoothContainer');
+    const progressDots = document.querySelectorAll('.progress-dot');
+    let currentTargetUrl = '';
+    
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 100) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
         
-        searchInput.addEventListener('input', (e) => {
-            const searchTerm = e.target.value.toLowerCase();
+        // Update progress tracker
+        const sections = document.querySelectorAll('section');
+        const scrollPos = window.scrollY + 100;
+        
+        sections.forEach((section, index) => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            
+            if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                progressDots.forEach(dot => dot.classList.remove('active'));
+                if (progressDots[index]) {
+                    progressDots[index].classList.add('active');
+                }
+            }
+        });
+    });
+
+    // Progress tracker navigation
+    progressDots.forEach(dot => {
+        dot.addEventListener('click', () => {
+            const sectionId = dot.getAttribute('data-section');
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+
+    // ===== SEARCH FUNCTIONALITY =====
+    const searchInput = document.getElementById('searchInput');
+    const courseCards = document.querySelectorAll('.course-card');
+    
+    searchInput.addEventListener('input', (e) => {
+        const searchTerm = e.target.value.toLowerCase();
+        
+        courseCards.forEach(card => {
+            const title = card.querySelector('.course-title').textContent.toLowerCase();
+            const description = card.querySelector('.course-description').textContent.toLowerCase();
+            
+            if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                card.style.display = 'block';
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 100);
+            } else {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    card.style.display = 'none';
+                }, 300);
+            }
+        });
+    });
+
+    // ===== FILTER FUNCTIONALITY =====
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Remove active class from all buttons
+            filterBtns.forEach(b => b.classList.remove('active'));
+            // Add active class to clicked button
+            btn.classList.add('active');
+            
+            const filter = btn.getAttribute('data-filter');
             
             courseCards.forEach(card => {
-                const title = card.querySelector('.course-title').textContent.toLowerCase();
-                const description = card.querySelector('.course-description').textContent.toLowerCase();
-                
-                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                if (filter === 'all' || card.getAttribute('data-category') === filter) {
                     card.style.display = 'block';
                     setTimeout(() => {
                         card.style.opacity = '1';
@@ -1504,419 +1718,436 @@
                 }
             });
         });
+    });
 
-        // ===== FILTER FUNCTIONALITY =====
-        const filterBtns = document.querySelectorAll('.filter-btn');
-        
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                // Remove active class from all buttons
-                filterBtns.forEach(b => b.classList.remove('active'));
-                // Add active class to clicked button
-                btn.classList.add('active');
-                
-                const filter = btn.getAttribute('data-filter');
-                
-                courseCards.forEach(card => {
-                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
-                        card.style.display = 'block';
-                        setTimeout(() => {
-                            card.style.opacity = '1';
-                            card.style.transform = 'translateY(0)';
-                        }, 100);
-                    } else {
-                        card.style.opacity = '0';
-                        card.style.transform = 'translateY(20px)';
-                        setTimeout(() => {
-                            card.style.display = 'none';
-                        }, 300);
-                    }
-                });
-            });
+    // ===== ENHANCED MODAL SYSTEM =====
+    const enhancedModal = document.getElementById('enhancedModal');
+    const modalContinueBtn = document.getElementById('modalContinueBtn');
+    const enrollBtns = document.querySelectorAll('.enroll-btn');
+    
+    // Store all course URLs
+    const courseUrls = {
+        'english': '/course/english',
+        'achievers5': '/course/achievers5',
+        'achievers3': '/course/achievers3',
+        'crash': '/course/crash',
+        'crash2': '/course/crash2',
+        'ssc2025': '/course/ssc2025',
+        '1': '/course/1',
+        '2': '/course/2'
+    };
+    
+    enrollBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const course = btn.getAttribute('data-course');
+            currentTargetUrl = courseUrls[course] || '#';
+            
+            // Show enhanced modal
+            enhancedModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
         });
-
-        // ===== ENHANCED MODAL SYSTEM =====
-        const enhancedModal = document.getElementById('enhancedModal');
-        const modalContinueBtn = document.getElementById('modalContinueBtn');
-        const enrollBtns = document.querySelectorAll('.enroll-btn');
+    });
+    
+    // Modal continue button
+    modalContinueBtn.addEventListener('click', () => {
+        enhancedModal.classList.remove('active');
+        document.body.style.overflow = 'auto';
         
-        // Store all course URLs
-        const courseUrls = {
-            'english': 'Full_Course_of_English_Pre_+_Mains_Recorded_ʀᴀɴɪ_ᴍᴀᴍ_ABHISHEK_SANJIT.html',
-            'achievers5': '/ACHIEVERS BATCH  5.html',
-            'achievers3': '/ACHIEVERS BATCH  3.O.html',
-            'crash': '/cash.html',
-            'crash2': '/Crash_Course 2.html',
-            'ssc2025': '/Practice Batch For SSC 2025 Exams.HTML',
-            '1': '/Rani_mam_Practice_Batch__2025_Exams_.html',
-            '2': '/Samundramanthan Of Vocabulary .html'
-        };
-        
-        enrollBtns.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                
-                const course = btn.getAttribute('data-course');
-                currentTargetUrl = courseUrls[course] || '#';
-                
-                // Show enhanced modal
-                enhancedModal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            });
-        });
-        
-        // Modal continue button
-        modalContinueBtn.addEventListener('click', () => {
+        // Smooth transition before navigation
+        setTimeout(() => {
+            if (currentTargetUrl) {
+                // For demo, show alert. In production, use window.location.href
+                if (currentTargetUrl.startsWith('http')) {
+                    window.open(currentTargetUrl, '_blank');
+                } else {
+                    showToast(`Redirecting to course...`, 'success');
+                    // window.location.href = currentTargetUrl;
+                }
+            }
+        }, 300);
+    });
+    
+    // Close modal on background click
+    enhancedModal.addEventListener('click', (e) => {
+        if (e.target === enhancedModal) {
             enhancedModal.classList.remove('active');
             document.body.style.overflow = 'auto';
-            
-            // Smooth transition before navigation
-            setTimeout(() => {
-                if (currentTargetUrl) {
-                    window.location.href = currentTargetUrl;
-                }
-            }, 300);
-        });
-        
-        // Close modal on background click
-        enhancedModal.addEventListener('click', (e) => {
-            if (e.target === enhancedModal) {
-                enhancedModal.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            }
-        });
+        }
+    });
 
-        // ===== CHATBOT FUNCTIONALITY =====
-        const chatbotBtn = document.getElementById('chatbotBtn');
-        const chatbot = document.getElementById('chatbot');
-        const closeChatbot = document.getElementById('closeChatbot');
-        const chatInput = document.getElementById('chatInput');
-        const chatBody = document.getElementById('chatBody');
+    // ===== CHATBOT FUNCTIONALITY =====
+    const chatbotBtn = document.getElementById('chatbotBtn');
+    const chatbot = document.getElementById('chatbot');
+    const closeChatbot = document.getElementById('closeChatbot');
+    const chatInput = document.getElementById('chatInput');
+    const chatBody = document.getElementById('chatBody');
+    
+    // Predefined responses
+    const botResponses = {
+        'hello': 'Hello! How can I help you with your studies today?',
+        'hi': 'Hi there! What would you like to know about our courses?',
+        'courses': 'We have various courses including English, Achievers Batches, Crash Courses, and more. Which one interests you?',
+        'price': 'All our courses are currently free! You can enroll in any course without any charges.',
+        'help': 'I can help you with course information, navigation, or answer general queries. What do you need?',
+        'download': 'You can download course materials from each course page. Click the download button in the course section.',
+        'contact': 'You can reach us through WhatsApp or email. Check the footer for contact details.',
+        'thanks': 'You\'re welcome! Let me know if you need anything else.',
+        'thank you': 'Happy to help! 😊',
+        'verification': 'You need to complete verification to access courses. Click the "Verify to Continue" button.',
+        'live': 'Live classes are scheduled regularly. Check the course details for exact timings.',
+        'recorded': 'Recorded courses are available 24/7. You can access them anytime after enrollment.'
+    };
+    
+    chatbotBtn.addEventListener('click', () => {
+        chatbot.classList.toggle('active');
+    });
+    
+    closeChatbot.addEventListener('click', () => {
+        chatbot.classList.remove('active');
+    });
+    
+    chatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter' && chatInput.value.trim()) {
+            const userMessage = chatInput.value.toLowerCase().trim();
+            chatInput.value = '';
+            
+            // Add user message
+            addMessage(userMessage, 'user');
+            
+            // Bot response
+            setTimeout(() => {
+                let response = 'I\'m not sure about that. Can you please rephrase?';
+                
+                for (const [key, value] of Object.entries(botResponses)) {
+                    if (userMessage.includes(key)) {
+                        response = value;
+                        break;
+                    }
+                }
+                
+                addMessage(response, 'bot');
+            }, 500);
+        }
+    });
+    
+    function addMessage(text, sender) {
+        const messageDiv = document.createElement('div');
+        messageDiv.style.marginBottom = '1rem';
+        messageDiv.style.padding = '0.75rem';
+        messageDiv.style.borderRadius = '12px';
+        messageDiv.style.maxWidth = '80%';
+        messageDiv.style.wordWrap = 'break-word';
         
-        // Predefined responses
-        const botResponses = {
-            'hello': 'Hello! How can I help you with your studies today?',
-            'hi': 'Hi there! What would you like to know about our courses?',
-            'courses': 'We have various courses including English, Achievers Batches, Crash Courses, and more. Which one interests you?',
-            'price': 'All our courses are currently free! You can enroll in any course without any charges.',
-            'help': 'I can help you with course information, navigation, or answer general queries. What do you need?',
-            'download': 'You can download course materials from each course page. Click the download button in the course section.',
-            'contact': 'You can reach us through WhatsApp or email. Check the footer for contact details.',
-            'thanks': 'You\'re welcome! Let me know if you need anything else.',
-            'thank you': 'Happy to help! 😊'
+        if (sender === 'user') {
+            messageDiv.style.background = 'var(--accent)';
+            messageDiv.style.marginLeft = 'auto';
+            messageDiv.style.borderBottomRightRadius = '4px';
+        } else {
+            messageDiv.style.background = 'rgba(255, 255, 255, 0.05)';
+            messageDiv.style.borderBottomLeftRadius = '4px';
+        }
+        
+        messageDiv.textContent = text;
+        chatBody.appendChild(messageDiv);
+        chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
+    // ===== DOWNLOAD SIMULATION =====
+    const downloadBtn = document.getElementById('downloadBtn');
+    const downloadProgress = document.getElementById('downloadProgress');
+    const downloadPercent = document.getElementById('downloadPercent');
+    const downloadBar = document.getElementById('downloadBar');
+    
+    downloadBtn.addEventListener('click', () => {
+        downloadProgress.classList.add('active');
+        let progress = 0;
+        
+        const interval = setInterval(() => {
+            progress += Math.random() * 15;
+            if (progress >= 100) {
+                progress = 100;
+                clearInterval(interval);
+                
+                setTimeout(() => {
+                    downloadProgress.classList.remove('active');
+                    // Reset progress
+                    setTimeout(() => {
+                        downloadPercent.textContent = '0%';
+                        downloadBar.style.width = '0%';
+                    }, 300);
+                    
+                    // Show success message
+                    showToast('✓ Download complete! Check your downloads folder.', 'success');
+                }, 1500);
+            }
+            
+            downloadPercent.textContent = Math.round(progress) + '%';
+            downloadBar.style.width = progress + '%';
+        }, 200);
+    });
+
+    // ===== THEME TOGGLE =====
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = themeToggle.querySelector('i');
+    let isDark = true;
+    
+    themeToggle.addEventListener('click', () => {
+        isDark = !isDark;
+        
+        if (isDark) {
+            // Switch to dark
+            document.documentElement.style.setProperty('--dark-bg', '#0a0a0f');
+            document.documentElement.style.setProperty('--darker-bg', '#05050a');
+            document.documentElement.style.setProperty('--text-primary', '#ffffff');
+            document.documentElement.style.setProperty('--text-secondary', '#a0a0c0');
+            document.documentElement.style.setProperty('--glass-bg', 'rgba(255, 255, 255, 0.05)');
+            themeIcon.className = 'fas fa-moon';
+            showToast('Dark mode activated', 'success');
+        } else {
+            // Switch to light
+            document.documentElement.style.setProperty('--dark-bg', '#ffffff');
+            document.documentElement.style.setProperty('--darker-bg', '#f5f5f5');
+            document.documentElement.style.setProperty('--text-primary', '#1a1a1a');
+            document.documentElement.style.setProperty('--text-secondary', '#4b5563');
+            document.documentElement.style.setProperty('--glass-bg', 'rgba(0, 0, 0, 0.05)');
+            themeIcon.className = 'fas fa-sun';
+            showToast('Light mode activated', 'success');
+        }
+    });
+
+    // ===== SHARE FUNCTIONALITY =====
+    const shareBtn = document.getElementById('shareBtn');
+    
+    shareBtn.addEventListener('click', async () => {
+        const shareData = {
+            title: 'VIP STUDY - Premium Courses',
+            text: 'Check out these amazing free courses! Live classes, recorded sessions, and study materials available.',
+            url: window.location.href
         };
         
-        chatbotBtn.addEventListener('click', () => {
-            chatbot.classList.toggle('active');
+        if (navigator.share && navigator.canShare(shareData)) {
+            try {
+                await navigator.share(shareData);
+                showToast('✓ Shared successfully!', 'success');
+            } catch (error) {
+                console.log('Share cancelled');
+            }
+        } else {
+            // Fallback: Copy to clipboard
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                showToast('✓ Link copied to clipboard!', 'success');
+            }).catch(() => {
+                // Final fallback
+                const tempInput = document.createElement('input');
+                tempInput.value = window.location.href;
+                document.body.appendChild(tempInput);
+                tempInput.select();
+                document.execCommand('copy');
+                document.body.removeChild(tempInput);
+                showToast('✓ Link copied to clipboard!', 'success');
+            });
+        }
+    });
+
+    // ===== FLOATING SHAPES ANIMATION =====
+    const floatingShapes = document.getElementById('floatingShapes');
+    
+    for (let i = 0; i < 15; i++) {
+        const shape = document.createElement('div');
+        shape.className = 'shape';
+        
+        const size = Math.random() * 100 + 20;
+        shape.style.width = `${size}px`;
+        shape.style.height = `${size}px`;
+        shape.style.left = `${Math.random() * 100}%`;
+        shape.style.animationDelay = `${Math.random() * 5}s`;
+        shape.style.animationDuration = `${Math.random() * 10 + 10}s`;
+        
+        // Random gradient
+        const gradients = [
+            'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+            'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)'
+        ];
+        shape.style.background = gradients[Math.floor(Math.random() * gradients.length)];
+        
+        floatingShapes.appendChild(shape);
+    }
+
+    // ===== SMOOTH PAGE LOAD =====
+    window.addEventListener('load', () => {
+        document.body.style.opacity = '0';
+        document.body.style.transition = 'opacity 0.5s ease';
+        
+        setTimeout(() => {
+            document.body.style.opacity = '1';
+        }, 100);
+        
+        // Show welcome message
+        setTimeout(() => {
+            showToast('🎓 Welcome to VIP STUDY Platform!', 'success');
+        }, 1500);
+    });
+
+    // ===== NOTIFICATION SYSTEM =====
+    const notificationBtn = document.getElementById('notificationBtn');
+    const notificationCount = notificationBtn.querySelector('.notification-count');
+    
+    notificationBtn.addEventListener('click', () => {
+        // Show notification panel
+        const notifications = [
+            '📚 New course added: English Pre + Mains Complete Course',
+            '🎥 Live class starting in 30 minutes',
+            '📥 Study material updated for Achievers Batch 5.0'
+        ];
+        
+        const notificationList = notifications.join('\n\n');
+        alert(`🔔 You have 3 unread notifications:\n\n${notificationList}`);
+        
+        // Mark as read
+        notificationCount.style.display = 'none';
+        showToast('Notifications marked as read', 'success');
+    });
+
+    // ===== HOVER EFFECTS ENHANCEMENT =====
+    const cards = document.querySelectorAll('.course-card, .featured-card');
+    
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            card.style.transform = 'translateY(-10px) scale(1.02)';
         });
         
-        closeChatbot.addEventListener('click', () => {
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'translateY(0) scale(1)';
+        });
+    });
+
+    // ===== KEYBOARD SHORTCUTS =====
+    document.addEventListener('keydown', (e) => {
+        // Ctrl + F for search
+        if (e.ctrlKey && e.key === 'f') {
+            e.preventDefault();
+            searchInput.focus();
+            showToast('Search focused', 'success');
+        }
+        
+        // Escape to close modals
+        if (e.key === 'Escape') {
+            enhancedModal.classList.remove('active');
             chatbot.classList.remove('active');
-        });
-        
-        chatInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter' && chatInput.value.trim()) {
-                const userMessage = chatInput.value.toLowerCase().trim();
-                chatInput.value = '';
-                
-                // Add user message
-                addMessage(userMessage, 'user');
-                
-                // Bot response
-                setTimeout(() => {
-                    let response = 'I\'m not sure about that. Can you please rephrase?';
-                    
-                    for (const [key, value] of Object.entries(botResponses)) {
-                        if (userMessage.includes(key)) {
-                            response = value;
-                            break;
-                        }
-                    }
-                    
-                    addMessage(response, 'bot');
-                }, 500);
-            }
-        });
-        
-        function addMessage(text, sender) {
-            const messageDiv = document.createElement('div');
-            messageDiv.style.marginBottom = '1rem';
-            messageDiv.style.padding = '0.75rem';
-            messageDiv.style.borderRadius = '12px';
-            messageDiv.style.maxWidth = '80%';
-            messageDiv.style.wordWrap = 'break-word';
-            
-            if (sender === 'user') {
-                messageDiv.style.background = 'var(--accent)';
-                messageDiv.style.marginLeft = 'auto';
-                messageDiv.style.borderBottomRightRadius = '4px';
-            } else {
-                messageDiv.style.background = 'rgba(255, 255, 255, 0.05)';
-                messageDiv.style.borderBottomLeftRadius = '4px';
-            }
-            
-            messageDiv.textContent = text;
-            chatBody.appendChild(messageDiv);
-            chatBody.scrollTop = chatBody.scrollHeight;
+            document.body.style.overflow = 'auto';
         }
-
-        // ===== DOWNLOAD SIMULATION =====
-        const downloadBtn = document.getElementById('downloadBtn');
-        const downloadProgress = document.getElementById('downloadProgress');
-        const downloadPercent = document.getElementById('downloadPercent');
-        const downloadBar = document.getElementById('downloadBar');
         
-        downloadBtn.addEventListener('click', () => {
-            downloadProgress.classList.add('active');
-            let progress = 0;
-            
-            const interval = setInterval(() => {
-                progress += Math.random() * 15;
-                if (progress >= 100) {
-                    progress = 100;
-                    clearInterval(interval);
-                    
-                    setTimeout(() => {
-                        downloadProgress.classList.remove('active');
-                        // Reset progress
-                        setTimeout(() => {
-                            downloadPercent.textContent = '0%';
-                            downloadBar.style.width = '0%';
-                        }, 300);
-                    }, 1500);
-                }
-                
-                downloadPercent.textContent = Math.round(progress) + '%';
-                downloadBar.style.width = progress + '%';
-            }, 200);
-        });
-
-        // ===== THEME TOGGLE =====
-        const themeToggle = document.getElementById('themeToggle');
-        const themeIcon = themeToggle.querySelector('i');
-        let isDark = true;
-        
-        themeToggle.addEventListener('click', () => {
-            isDark = !isDark;
-            
-            if (isDark) {
-                // Switch to dark
-                document.documentElement.style.setProperty('--dark-bg', '#0a0a0f');
-                document.documentElement.style.setProperty('--darker-bg', '#05050a');
-                themeIcon.className = 'fas fa-moon';
-            } else {
-                // Switch to light
-                document.documentElement.style.setProperty('--dark-bg', '#ffffff');
-                document.documentElement.style.setProperty('--darker-bg', '#f5f5f5');
-                document.documentElement.style.setProperty('--text-primary', '#1a1a1a');
-                document.documentElement.style.setProperty('--text-secondary', '#4b5563');
-                document.documentElement.style.setProperty('--glass-bg', 'rgba(0, 0, 0, 0.05)');
-                themeIcon.className = 'fas fa-sun';
-            }
-        });
-
-        // ===== SHARE FUNCTIONALITY =====
-        const shareBtn = document.getElementById('shareBtn');
-        
-        shareBtn.addEventListener('click', async () => {
-            if (navigator.share) {
-                try {
-                    await navigator.share({
-                        title: 'VIP STUDY - Premium Courses',
-                        text: 'Check out these amazing free courses!',
-                        url: window.location.href
-                    });
-                } catch (error) {
-                    console.log('Share cancelled');
-                }
-            } else {
-                // Fallback: Copy to clipboard
-                navigator.clipboard.writeText(window.location.href).then(() => {
-                    alert('Link copied to clipboard!');
-                });
-            }
-        });
-
-        // ===== FLOATING SHAPES ANIMATION =====
-        const floatingShapes = document.getElementById('floatingShapes');
-        
-        for (let i = 0; i < 15; i++) {
-            const shape = document.createElement('div');
-            shape.className = 'shape';
-            
-            const size = Math.random() * 100 + 20;
-            shape.style.width = `${size}px`;
-            shape.style.height = `${size}px`;
-            shape.style.left = `${Math.random() * 100}%`;
-            shape.style.animationDelay = `${Math.random() * 5}s`;
-            shape.style.animationDuration = `${Math.random() * 10 + 10}s`;
-            
-            // Random gradient
-            const gradients = [
-                'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
-                'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)'
-            ];
-            shape.style.background = gradients[Math.floor(Math.random() * gradients.length)];
-            
-            floatingShapes.appendChild(shape);
+        // Space to pause/resume animations
+        if (e.code === 'Space' && e.target === document.body) {
+            e.preventDefault();
+            const shapes = document.querySelectorAll('.shape');
+            shapes.forEach(shape => {
+                const isPaused = shape.style.animationPlayState === 'paused';
+                shape.style.animationPlayState = isPaused ? 'running' : 'paused';
+            });
+            showToast('Animations ' + (shapes[0].style.animationPlayState === 'paused' ? 'paused' : 'resumed'), 'success');
         }
+    });
 
-        // ===== SMOOTH PAGE LOAD =====
+    // ===== PERFORMANCE OPTIMIZATION =====
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            // Handle resize completion
+            console.log('Window resize optimized');
+        }, 250);
+    });
+
+    // ===== OFFLINE DETECTION =====
+    window.addEventListener('online', () => {
+        showToast('✓ You are back online!', 'success');
+    });
+    
+    window.addEventListener('offline', () => {
+        showToast('⚠️ You are offline. Some features may not work.', 'warning');
+    });
+
+    // ===== SERVICE WORKER REGISTRATION (PWA) =====
+    if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-            document.body.style.opacity = '0';
-            document.body.style.transition = 'opacity 0.5s ease';
-            
-            setTimeout(() => {
-                document.body.style.opacity = '1';
-            }, 100);
-        });
-
-        // ===== NOTIFICATION SYSTEM =====
-        const notificationBtn = document.getElementById('notificationBtn');
-        const notificationCount = notificationBtn.querySelector('.notification-count');
-        
-        notificationBtn.addEventListener('click', () => {
-            // Show notification panel (you can extend this)
-            alert('You have 3 unread notifications:\n1. New course added\n2. Live class starting soon\n3. Study material updated');
-            
-            // Mark as read
-            notificationCount.style.display = 'none';
-        });
-
-        // ===== HOVER EFFECTS ENHANCEMENT =====
-        const cards = document.querySelectorAll('.course-card, .featured-card');
-        
-        cards.forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                card.style.transform = 'translateY(-10px) scale(1.02)';
-            });
-            
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'translateY(0) scale(1)';
+            navigator.serviceWorker.register('/service-worker.js').then(registration => {
+                console.log('SW registered: ', registration);
+            }).catch(registrationError => {
+                console.log('SW registration failed: ', registrationError);
             });
         });
+    }
 
-        // ===== KEYBOARD SHORTCUTS =====
-        document.addEventListener('keydown', (e) => {
-            // Ctrl + F for search
-            if (e.ctrlKey && e.key === 'f') {
-                e.preventDefault();
-                searchInput.focus();
-            }
-            
-            // Escape to close modals
-            if (e.key === 'Escape') {
-                enhancedModal.classList.remove('active');
-                chatbot.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            }
-            
-            // Space to pause/resume animations
-            if (e.code === 'Space') {
-                const shapes = document.querySelectorAll('.shape');
-                shapes.forEach(shape => {
-                    const isPaused = shape.style.animationPlayState === 'paused';
-                    shape.style.animationPlayState = isPaused ? 'running' : 'paused';
-                });
-            }
-        });
-
-        // ===== PERFORMANCE OPTIMIZATION =====
-        let resizeTimeout;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(() => {
-                // Handle resize completion
-            }, 250);
-        });
-
-        // ===== OFFLINE DETECTION =====
-        window.addEventListener('online', () => {
-            showToast('You are back online!', 'success');
-        });
+    // ===== SMOOTH TOAST FUNCTION =====
+    function showToast(message, type) {
+        const toast = document.createElement('div');
+        toast.textContent = message;
+        toast.style.position = 'fixed';
+        toast.style.bottom = '100px';
+        toast.style.left = '50%';
+        toast.style.transform = 'translateX(-50%)';
+        toast.style.background = type === 'success' ? 'var(--success)' : 
+                                type === 'warning' ? 'var(--warning)' : 
+                                'var(--danger)';
+        toast.style.color = 'white';
+        toast.style.padding = '12px 24px';
+        toast.style.borderRadius = '10px';
+        toast.style.zIndex = '10000';
+        toast.style.boxShadow = '0 10px 30px rgba(0,0,0,0.3)';
+        toast.style.fontWeight = '500';
+        toast.style.textAlign = 'center';
+        toast.style.maxWidth = '90%';
+        toast.style.whiteSpace = 'nowrap';
+        toast.style.overflow = 'hidden';
+        toast.style.textOverflow = 'ellipsis';
         
-        window.addEventListener('offline', () => {
-            showToast('You are offline. Some features may not work.', 'warning');
-        });
+        document.body.appendChild(toast);
         
-        function showToast(message, type) {
-            const toast = document.createElement('div');
-            toast.textContent = message;
-            toast.style.position = 'fixed';
-            toast.style.bottom = '100px';
-            toast.style.left = '50%';
-            toast.style.transform = 'translateX(-50%)';
-            toast.style.background = type === 'success' ? 'var(--success)' : 'var(--warning)';
-            toast.style.color = 'white';
-            toast.style.padding = '1rem 2rem';
-            toast.style.borderRadius = '10px';
-            toast.style.zIndex = '10000';
-            toast.style.boxShadow = '0 10px 30px rgba(0,0,0,0.3)';
-            
-            document.body.appendChild(toast);
-            
+        // Fade in
+        toast.style.opacity = '0';
+        toast.style.transition = 'opacity 0.3s, transform 0.3s';
+        setTimeout(() => {
+            toast.style.opacity = '1';
+            toast.style.transform = 'translateX(-50%) translateY(0)';
+        }, 10);
+        
+        // Remove after 3 seconds
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            toast.style.transform = 'translateX(-50%) translateY(20px)';
             setTimeout(() => {
-                toast.style.opacity = '0';
-                toast.style.transform = 'translateX(-50%) translateY(20px)';
-                setTimeout(() => {
+                if (toast.parentNode) {
                     document.body.removeChild(toast);
-                }, 300);
-            }, 3000);
-        }
-
-
-
-// === VERIFICATION GATE (FINAL WORKING VERSION) ===
-
-(function () {
-    const verificationGate = document.getElementById("verificationGate");
-    const mainContent = document.getElementById("mainContent");
-
-    const KEY = "verification_24hr";
-    const VALIDITY = 24 * 60 * 60 * 1000; // 24 hours
-
-    const params = new URLSearchParams(window.location.search);
-
-    // AUTO VERIFY ONLY IF ?true-show
-    if (params.has("true-show")) {
-        localStorage.setItem(KEY, Date.now().toString());
-        window.history.replaceState({}, "", window.location.pathname);
-
-        mainContent.style.display = "block";
-        verificationGate.classList.remove("show-gate");
-        return;
+                }
+            }, 300);
+        }, 3000);
     }
 
-    // NORMAL CHECK
-    const lastTime = localStorage.getItem(KEY);
-
-    if (lastTime) {
-        const diff = Date.now() - parseInt(lastTime);
-
-        if (diff < VALIDITY) {
-            // VALID USER
-            mainContent.style.display = "block";
-            return;
-        }
-    }
-
-    // NOT VERIFIED → SHOW POPUP
-    mainContent.style.display = "none";
-    verificationGate.classList.add("show-gate");
-    document.body.style.overflow = "hidden";
-})();
-
-
-  
-
-
-
-
-
-
-
-    </script>
+    // ===== INITIAL LOAD ANIMATION =====
+    setTimeout(() => {
+        // Animate stats numbers
+        const statNumbers = document.querySelectorAll('.stat-number');
+        statNumbers.forEach(stat => {
+            const finalValue = stat.textContent;
+            let current = 0;
+            const increment = finalValue.includes('+') ? 1 : parseInt(finalValue) / 20;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= parseInt(finalValue)) {
+                    clearInterval(timer);
+                    stat.textContent = finalValue;
+                } else {
+                    stat.textContent = Math.floor(current) + (finalValue.includes('+') ? '+' : '');
+                }
+            }, 50);
+        });
+    }, 1000);
+</script>
 </body>
 </html>
